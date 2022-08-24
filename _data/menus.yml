@@ -1,8 +1,8 @@
 main:
-  - name: "Services"
-    url: "/services/"
+  - name: "SQL Problems"
+    url: "/problems/"
     weight: 2
-  - name: "Team"
+  - name: "Playground"
     url: "/team/"
     weight: 3
   - name: "About"
