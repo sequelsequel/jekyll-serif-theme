@@ -1,262 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 
 <head>
-  <meta charset="utf-8">
-  <title>Services</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/png" href="/images/favicon-32x32.svg">
-  <!-- Google Fonts CDN -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Self host font -->
-  <!-- <link rel="preload" href="/assets/fonts/playfair-display.woff2" as="font" type="font/woff2" crossorigin> -->
-  <link href="/assets/css/style.css" rel="stylesheet">
-  
-  <meta name="description" content="Services" />
-  <meta property="og:title" content="Services"/>
-  <meta property="og:type" content="website"/>
-  <meta property="og:url" content=""/>
-  
-  <meta property="og:description" content="Services"/>
-  <meta name="twitter:card" content="summary"/>
-  <meta name="twitter:site" content=""/>
-  <meta name="twitter:creator" content=""/>
+  <meta charset="utf8">
+  <title>sql.js demo: Online SQL interpreter</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/codemirror.css">
+  <link rel="stylesheet" href="/assets/js/demo.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/codemirror.js"></script>
 
 </head>
 
-<body class='page page-services'>
-  <div id="main-menu-mobile" class="main-menu-mobile">
-  
-  <ul>
-    
-    <li class="active">
-      <a href="/problems/">SQL Problems</a>
-    </li>
-    
-    <li class="">
-      <a href="/team/">Playground</a>
-    </li>
-    
-    <li class="">
-      <a href="/about/">About</a>
-    </li>
-    
-    <li class="">
-      <a href="/contact/">Contact</a>
-    </li>
-    
-  </ul>
-</div>
+<body>
+  <!-- Github ribbon -->
+  <a href="https://github.com/sql-js/sql.js"><img style="position: absolute; top: 0; left: 0; border: 0;"
+      src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67"
+      alt="Fork me on GitHub"
+      data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
 
-  <div id="wrapper" class="wrapper">
-    <div class='header'>
-  <div class="container">
-    <div class="logo">
-      <a href="/"><img width="120px" height="32px" alt="Hamdan" src="/images/logo/logo.svg" /></a>
-    </div>
-    <div class="logo-mobile">
-      <a href="/"><img width="32px" height="32px" alt="Hamdan" src="/images/logo/logo-mobile.svg" /></a>
-    </div>
-    <div id="main-menu" class="main-menu">
-  
-  <ul>
-    
-    <li class="active">
-      <a href="/problems/">SQL Problems</a>
-    </li>
-    
-    <li class="">
-      <a href="/team/">Playground</a>
-    </li>
-    
-    <li class="">
-      <a href="/about/">About</a>
-    </li>
-    
-    <li class="">
-      <a href="/contact/">Contact</a>
-    </li>
-    
-  </ul>
-</div>
+  <h1>Online SQL interpreter</h1>
 
-    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button" aria-label="Mobile Menu">
-  <span class="hamburger-box">
-    <span class="hamburger-inner"></span>
-  </span>
-</button>
-  </div>
-</div>
+  <main>
+    <label for='commands'>Enter some SQL</label>
+    <br>
 
-    <div class="intro">
-  <div class="container">
-    <div class="row justify-content-start">
-      <div class="col-12 col-md-7 col-lg-6 order-2 order-md-1">
-        <h1 id="services-that-grow-with-your-business">Services that grow with your business</h1>
+    <textarea id="commands">DROP TABLE IF EXISTS employees;
+CREATE TABLE employees( id          integer,  name    text,
+                          designation text,     manager integer,
+                          hired_on    date,     salary  integer,
+                          commission  float,    dept    integer);
 
-<p>Aliquam erat volutpat. Morbi nisl tortor, dignissim eget efficitur vel, auctor non felis. Fusce quis viverra mi. Aenean quis massa pretium, ullamcorper nisi eget, hendrerit odio.</p>
+  INSERT INTO employees VALUES (1,'JOHNSON','ADMIN',6,'1990-12-17',18000,NULL,4);
+  INSERT INTO employees VALUES (2,'HARDING','MANAGER',9,'1998-02-02',52000,300,3);
+  INSERT INTO employees VALUES (3,'TAFT','SALES I',2,'1996-01-02',25000,500,3);
+  INSERT INTO employees VALUES (4,'HOOVER','SALES I',2,'1990-04-02',27000,NULL,3);
+  INSERT INTO employees VALUES (5,'LINCOLN','TECH',6,'1994-06-23',22500,1400,4);
+  INSERT INTO employees VALUES (6,'GARFIELD','MANAGER',9,'1993-05-01',54000,NULL,4);
+  INSERT INTO employees VALUES (7,'POLK','TECH',6,'1997-09-22',25000,NULL,4);
+  INSERT INTO employees VALUES (8,'GRANT','ENGINEER',10,'1997-03-30',32000,NULL,2);
+  INSERT INTO employees VALUES (9,'JACKSON','CEO',NULL,'1990-01-01',75000,NULL,4);
+  INSERT INTO employees VALUES (10,'FILLMORE','MANAGER',9,'1994-08-09',56000,NULL,2);
+  INSERT INTO employees VALUES (11,'ADAMS','ENGINEER',10,'1996-03-15',34000,NULL,2);
+  INSERT INTO employees VALUES (12,'WASHINGTON','ADMIN',6,'1998-04-16',18000,NULL,4);
+  INSERT INTO employees VALUES (13,'MONROE','ENGINEER',10,'2000-12-03',30000,NULL,2);
+  INSERT INTO employees VALUES (14,'ROOSEVELT','CPA',9,'1995-10-12',35000,NULL,1);
 
-      </div>
-      
-      <div class="col-12 col-md-5 col-lg-6 order-1 order-md-2 position-relative">
-        <img alt=Services class="intro-image intro-image-absolute intro-image-hide-mobile" src="/images/illustrations/reading.svg" />
-      </div>
-      
-    </div>
-  </div>
-</div>
+SELECT designation,COUNT(*) AS nbr, (AVG(salary)) AS avg_salary FROM employees GROUP BY designation ORDER BY avg_salary DESC;
+SELECT name,hired_on FROM employees ORDER BY hired_on;</textarea>
 
-<div class="container pt-6 pb-6">
-  <div class="row">
-    
-    <div class="col-12 col-md-6 mb-3">
-      <div class="service service-summary">
-        <div class="service-content">
-          <h2 class="service-title">
-            <a href="/services/accounting/">Accounting</a>
-          </h2>
-          <p>Financial accounting (or financial accountancy) is the field of accounting concerned with the sum...</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-12 col-md-6 mb-3">
-      <div class="service service-summary">
-        <div class="service-content">
-          <h2 class="service-title">
-            <a href="/services/business-sales/">Business Sales</a>
-          </h2>
-          <p>Cyanee nec pedicis positi. Esse et diem forte quoque et ieiunia
-vixque dixit negari ullis stamina...</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-12 col-md-6 mb-3">
-      <div class="service service-summary">
-        <div class="service-content">
-          <h2 class="service-title">
-            <a href="/services/mergers/">Mergers</a>
-          </h2>
-          <p>Lorem markdownum aequalis strigis. Saetigeri iubeas, vultu huic alvum nondum
-de obside ut laniavi...</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-12 col-md-6 mb-3">
-      <div class="service service-summary">
-        <div class="service-content">
-          <h2 class="service-title">
-            <a href="/services/business-advisory/">Business Advisory</a>
-          </h2>
-          <p>Business advisory is the final tier of the accounting pyramid. Business advisory involves reporti...</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-12 col-md-6 mb-3">
-      <div class="service service-summary">
-        <div class="service-content">
-          <h2 class="service-title">
-            <a href="/services/superannuation/">Superannuation</a>
-          </h2>
-          <p>Lorem markdownum aequalis strigis. Saetigeri iubeas, vultu huic alvum nondum
-de obside ut laniavi...</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-12 col-md-6 mb-3">
-      <div class="service service-summary">
-        <div class="service-content">
-          <h2 class="service-title">
-            <a href="/services/tax-preperation/">Tax Preperation</a>
-          </h2>
-          <p>Lorem markdownum Achaica revolutaque amore, penitus puppes nec furit,
-clipeus fatetur, mira inter...</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-12 col-md-6 mb-3">
-      <div class="service service-summary">
-        <div class="service-content">
-          <h2 class="service-title">
-            <a href="/services/insurance/">Insurance</a>
-          </h2>
-          <p>Lorem markdownum Achaica revolutaque amore, penitus puppes nec furit,
-clipeus fatetur, mira inter...</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="col-12 col-md-6 mb-3">
-      <div class="service service-summary">
-        <div class="service-content">
-          <h2 class="service-title">
-            <a href="/services/wealth-management/">Wealth Management</a>
-          </h2>
-          <p>Lorem markdownum Achaica revolutaque amore, penitus puppes nec furit,
-clipeus fatetur, mira inter...</p>
-        </div>
-      </div>
-    </div>
-    
-  </div>
-</div>
+    <button id="execute" class="button">Execute</button>
+    <button id='savedb' class="button">Save the db</button>
+    <label class="button">Load an SQLite database file: <input type='file' id='dbfile'></label>
 
-  </div>
-  <div class="footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="footer-inner">
-          <h2 class="footer-title">Hamdan</h2>
-          <ul>
-            
-            
-            <li class="">
-              <a href="/">Home</a>
-            </li>
-            
-            <li class="">
-              <a href="/contact/">Contact</a>
-            </li>
-            
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+    <div id="error" class="error"></div>
 
-  <div class="sub-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="sub-footer-inner">
-          
-            <div class="social">
-  
-    <a href="https://github.com/zerostaticthemes/jekyll-serif-theme" target="blank"><img src="/images/social/github.svg" title="Github" alt="Github" /></a>
-  
-    <a href="https://twitter.com/zerostaticio" target="blank"><img src="/images/social/twitter.svg" title="Twitter" alt="Twitter" /></a>
-  
-</div>
+    <pre id="output">Results will be displayed here</pre>
+  </main>
 
-          
-          
-          <div class="copyright">Free Jekyll theme by <a class="zerostatic" href="https://www.zerostatic.io">www.zerostatic.io</a></div>
-          
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-  <script type="text/javascript" src="/assets/js/scripts.js"></script>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.58.1/mode/sql/sql.min.js"></script>
+
+  <footer>
+    Original work by kripken (<a href='https://github.com/sql-js/sql.js'>sql.js</a>).
+    C to Javascript compiler by kripken (<a href='https://github.com/kripken/emscripten'>emscripten</a>).
+    Project now maintained by <a href='https://github.com/lovasoa'>lovasoa</a>
+  </footer>
+
+  <script type="text/javascript" src="/gui.js"></script>
 </body>
+
 </html>
